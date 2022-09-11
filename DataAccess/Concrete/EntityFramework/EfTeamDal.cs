@@ -18,14 +18,14 @@ namespace DataAccess.Concrete.EntityFramework
             using (ProjectManagementSystemContext context = new ProjectManagementSystemContext())
             {
                 IQueryable<TeamDto> result = from team in filter is null ? context.Teams : context.Teams.Where(filter)
-                                             join us in context.Users on team.UserID equals us.ID
+                                             //join us in context.Users on team.UserID equals us.ID
                                              join pr in context.Projects on team.ProjectID equals pr.ID
                                              select new TeamDto()
                                              {
                                                  ID = team.ID,
                                                  ProjectID = pr.ID,
                                                  ProjectName = pr.ProjectName,
-                                                 Member = us.FirstName+" "+us.LastName,
+                                                 //Member = us.FirstName+" "+us.LastName,
                                                  Status = team.Status
                                              };
                 return result.ToList();
@@ -36,14 +36,14 @@ namespace DataAccess.Concrete.EntityFramework
             using (ProjectManagementSystemContext context = new ProjectManagementSystemContext())
             {
                 IQueryable<TeamDto> result = from team in filter is null ? context.Teams : context.Teams.Where(filter)
-                    join us in context.Users on team.UserID equals us.ID
+                    //join us in context.Users on team.UserID equals us.ID
                     join pr in context.Projects on team.ProjectID equals pr.ID
                     select new TeamDto()
                     {
                         ID = team.ID,
                         ProjectName = pr.ProjectName,
-                        UserID = us.ID,
-                        Member = us.FirstName + " " + us.LastName,
+                        //UserID = us.ID,
+                       // Member = us.FirstName + " " + us.LastName,
                         Status = team.Status,
                         ProjectID = pr.ID
                     };
